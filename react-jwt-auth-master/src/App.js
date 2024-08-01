@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 import "./App.css";
 
 import AuthService from "./services/auth.service";
@@ -23,8 +27,7 @@ class App extends Component {
     this.logOut = this.logOut.bind(this);
 
     this.state = {
-      showModeratorBoard: false,
-      showAdminBoard: false,
+      isAdmin: false,
       currentUser: undefined,
     };
   }
@@ -35,8 +38,7 @@ class App extends Component {
     if (user) {
       this.setState({
         currentUser: user,
-        showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
-        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        isAdmin: user.roles.includes("ROLE_ADMIN"),
       });
     }
     
@@ -52,14 +54,13 @@ class App extends Component {
   logOut() {
     AuthService.logout();
     this.setState({
-      showModeratorBoard: false,
-      showAdminBoard: false,
+      isAdmin: false,
       currentUser: undefined,
     });
   }
 
   render() {
-    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+    const {currentUser, isAdmin } = this.state;
 
     return (
       <div>
@@ -68,16 +69,7 @@ class App extends Component {
             Home
           </Link>
           <div className="navbar-nav mr-auto">
-
-            {showModeratorBoard && (
-              <li className="nav-item">
-                <Link to={"/mod"} className="nav-link">
-                  Moderator Board
-                </Link>
-              </li>
-            )}
-
-            {showAdminBoard && (
+            {isAdmin && (
               <li className="nav-item">
                 <Link to={"/admin"} className="nav-link">
                   Admin Board

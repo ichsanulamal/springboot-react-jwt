@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CandidateService from "../services/candidate.service"; // Make sure this service method is implemented
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-
 const CandidateDetail = () => {
   const { id } = useParams(); // Extract the candidate ID from the URL
   const [candidate, setCandidate] = useState(null);

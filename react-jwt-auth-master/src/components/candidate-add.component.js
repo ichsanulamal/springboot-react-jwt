@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CandidateService from "../services/candidate.service";
-import { useNavigate } from "react-router-dom"; // Replacing useHistory
+import { useNavigate } from "react-router-dom";
 
 const AddCandidate = () => {
   const [candidate, setCandidate] = useState({
