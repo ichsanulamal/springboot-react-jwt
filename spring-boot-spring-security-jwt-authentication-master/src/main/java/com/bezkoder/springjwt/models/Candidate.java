@@ -11,7 +11,7 @@ public class Candidate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String positionApplied;
+        private String positionApplied;
     private String name;
     private String ktpNumber;
     private String birthPlace;
