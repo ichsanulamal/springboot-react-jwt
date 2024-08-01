@@ -19,6 +19,11 @@ class CandidateService {
   updateCandidate(candidate) {
     return axios.put(API_URL + '', candidate, { headers: authHeader(  ) });
   }
+
+  searchCandidate(params) {
+    return axios.get(API_URL + '/search', {params: params ,headers: authHeader()  } );
+  }
+  
 }
 
 export default new CandidateService();

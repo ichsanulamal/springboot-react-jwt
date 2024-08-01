@@ -48,6 +48,17 @@ public class CandidateController {
             .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
   }
 
+  public boolean isAdmin() {
+    User user =  getCurrentUser();
+    for (Role role : user.getRoles()) {
+      if (role.getName().equals(ERole.ROLE_ADMIN)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+
   @GetMapping("/mod")
   @PreAuthorize("hasRole('MODERATOR')")
   public String moderatorAccess() {
@@ -61,24 +72,42 @@ public class CandidateController {
   }
 
   @GetMapping("")
-  @PreAuthorize("hasRole('USER')  ")
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   public ResponseEntity<List<Candidate>> getCandidatesForCurrentUser() {
     User user =  getCurrentUser();
 
     if (user == null) {
       return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    } else if (isAdmin()) {
+      List<Candidate> candidates = candidateRepository.findAll();
+      return new ResponseEntity<>(candidates, HttpStatus.OK);
+    } else {
+      List<Candidate> candidates = candidateRepository.findByUser(user);
+      return new ResponseEntity<>(candidates, HttpStatus.OK);
     }
+//    return new ResponseEntity<>(candidates, HttpStatus.OK);
+  }
 
-    List<Candidate> candidates = candidateRepository.findByUser(user);
-    return new ResponseEntity<>(candidates, HttpStatus.OK);
+  // addition
+
+  @GetMapping("/search")
+  @PreAuthorize("hasRole('ADMIN')")
+  public List<Candidate> searchCandidates(
+          @RequestParam(required = false) String name,
+          @RequestParam(required = false) String positionApplied,
+          @RequestParam(required = false) String educationLevel
+  ) {
+    return candidateRepository.searchCandidates(name, positionApplied, educationLevel);
   }
 
   @GetMapping("/{id}")
-  @PreAuthorize("hasRole('USER')")
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   public ResponseEntity<Candidate> getCandidateById(@PathVariable Long id) {
     Candidate candidate = candidateRepository.findById(id).orElse(null);
 
-    if (candidate == null || !candidate.getUser().getId().equals(getCurrentUser().getId())) {
+    if (isAdmin()) {
+      return new ResponseEntity<>(candidate, HttpStatus.OK);
+    } else if (candidate == null || !candidate.getUser().getId().equals(getCurrentUser().getId())) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     return new ResponseEntity<>(candidate, HttpStatus.OK);
