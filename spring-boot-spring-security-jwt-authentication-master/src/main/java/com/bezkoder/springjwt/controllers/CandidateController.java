@@ -60,8 +60,8 @@ public class CandidateController {
     return "Admin Board.";
   }
 
-  @GetMapping("/")
-  @PreAuthorize("hasRole('USER')")
+  @GetMapping("")
+  @PreAuthorize("hasRole('USER')  ")
   public ResponseEntity<List<Candidate>> getCandidatesForCurrentUser() {
     User user =  getCurrentUser();
 

@@ -11,7 +11,7 @@ public class Training {
     private Long id;
 
     private String courseName;
-    private boolean certificate;
+    private String certificate;
     private String year;
 
     @ManyToOne
@@ -35,11 +35,11 @@ public class Training {
         this.courseName = courseName;
     }
 
-    public boolean isCertificate() {
+    public String getCertificate() {
         return certificate;
     }
 
-    public void setCertificate(boolean certificate) {
+    public void setCertificate(String certificate) {
         this.certificate = certificate;
     }
 
