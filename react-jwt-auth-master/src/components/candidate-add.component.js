@@ -123,150 +123,171 @@ const AddCandidate = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Add New Candidate</h1>
+    <>
+    <header className="jumbotron">
+        <h1>Add New Candidate</h1>  
+      </header>
+    <div className="container mt-5 card">
       <form onSubmit={handleSubmit}>
         {/* Personal Information Fields */}
-        <div>
-          <label>Position Applied</label>
-          <input type="text" name="positionApplied" value={candidate.positionApplied} onChange={handleInputChange} />
+        <div className="mb-3">
+          <label className="form-label">Position Applied</label>
+          <input type="text" className="form-control" name="positionApplied" value={candidate.positionApplied} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>Name</label>
-          <input type="text" name="name" value={candidate.name} onChange={handleInputChange} />
+        <div className="mb-3">
+          <label className="form-label">Name</label>
+          <input type="text" className="form-control" name="name" value={candidate.name} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>KTP Number</label>
-          <input type="text" name="ktpNumber" value={candidate.ktpNumber} onChange={handleInputChange} />
+        <div className="mb-3">
+          <label className="form-label">KTP Number</label>
+          <input type="text" className="form-control" name="ktpNumber" value={candidate.ktpNumber} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>Birth Place</label>
-          <input type="text" name="birthPlace" value={candidate.birthPlace} onChange={handleInputChange} />
+        <div className="mb-3">
+          <label className="form-label">Birth Place</label>
+          <input type="text" className="form-control" name="birthPlace" value={candidate.birthPlace} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>Birth Date</label>
-          <input type="date" name="birthDate" value={candidate.birthDate} onChange={handleInputChange} />
+        <div className="mb-3">
+          <label className="form-label">Birth Date</label>
+          <input type="date" className="form-control" name="birthDate" value={candidate.birthDate} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>Gender</label>
-          <input type="text" name="gender" value={candidate.gender} onChange={handleInputChange} />
+        <div className="mb-3">
+          <label className="form-label">Gender</label>
+          <input type="text" className="form-control" name="gender" value={candidate.gender} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>Religion</label>
-          <input type="text" name="religion" value={candidate.religion} onChange={handleInputChange} />
+        <div className="mb-3">
+          <label className="form-label">Religion</label>
+          <input type="text" className="form-control" name="religion" value={candidate.religion} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>Blood Type</label>
-          <input type="text" name="bloodType" value={candidate.bloodType} onChange={handleInputChange} />
+        <div className="mb-3">
+          <label className="form-label">Blood Type</label>
+          <input type="text" className="form-control" name="bloodType" value={candidate.bloodType} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>Marital Status</label>
-          <input type="text" name="maritalStatus" value={candidate.maritalStatus} onChange={handleInputChange} />
+        <div className="mb-3">
+          <label className="form-label">Marital Status</label>
+          <input type="text" className="form-control" name="maritalStatus" value={candidate.maritalStatus} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>KTP Address</label>
-          <input type="text" name="ktpAddress" value={candidate.ktpAddress} onChange={handleInputChange} />
+        <div className="mb-3">
+          <label className="form-label">KTP Address</label>
+          <input type="text" className="form-control" name="ktpAddress" value={candidate.ktpAddress} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>Current Address</label>
-          <input type="text" name="currentAddress" value={candidate.currentAddress} onChange={handleInputChange} />
+        <div className="mb-3">
+          <label className="form-label">Current Address</label>
+          <input type="text" className="form-control" name="currentAddress" value={candidate.currentAddress} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>Email</label>
-          <input type="email" name="email" value={candidate.email} onChange={handleInputChange} />
+        <div className="mb-3">
+          <label className="form-label">Email</label>
+          <input type="email" className="form-control" name="email" value={candidate.email} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>Phone Number</label>
-          <input type="text" name="phoneNumber" value={candidate.phoneNumber} onChange={handleInputChange} />
+        <div className="mb-3">
+          <label className="form-label">Phone Number</label>
+          <input type="text" className="form-control" name="phoneNumber" value={candidate.phoneNumber} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>Emergency Contact</label>
-          <input type="text" name="emergencyContact" value={candidate.emergencyContact} onChange={handleInputChange} />
+        <div className="mb-3 form-check">
+          <input type="checkbox" className="form-check-input" name="willingToRelocate" checked={candidate.willingToRelocate} onChange={handleCheckboxChange} />
+          <label className="form-check-label">Willing to Relocate</label>
         </div>
-        <div>
-          <label>Willing to Relocate</label>
-          <input type="checkbox" name="willingToRelocate" checked={candidate.willingToRelocate} onChange={handleCheckboxChange} />
-        </div>
-        <div>
-          <label>Expected Salary</label>
-          <input type="text" name="expectedSalary" value={candidate.expectedSalary} onChange={handleInputChange} />
+        <div className="mb-3">
+          <label className="form-label">Expected Salary</label>
+          <input type="text" className="form-control" name="expectedSalary" value={candidate.expectedSalary} onChange={handleInputChange} />
         </div>
 
         {/* Education Fields */}
-        <div>
+        <div className="mb-4">
           <h2>Education</h2>
           {candidate.educationList.map((edu, index) => (
-            <div key={index}>
-              <label>Level</label>
-              <input type="text" name="level" value={edu.level} onChange={(e) => handleEducationChange(index, e)} />
-              <label>Institution Name</label>
-              <input type="text" name="institutionName" value={edu.institutionName} onChange={(e) => handleEducationChange(index, e)} />
-              <label>Major</label>
-              <input type="text" name="major" value={edu.major} onChange={(e) => handleEducationChange(index, e)} />
-              <label>Graduation Year</label>
-              <input type="text" name="graduationYear" value={edu.graduationYear} onChange={(e) => handleEducationChange(index, e)} />
-              <label>GPA</label>
-              <input type="text" name="gpa" value={edu.gpa} onChange={(e) => handleEducationChange(index, e)} />
-              <button type="button" onClick={() => handleRemoveEducation(index)}>Remove</button>
+            <div key={index} className="mb-3 p-3 border rounded">
+              <div className="row">
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Level</label>
+                  <input type="text" className="form-control" name="level" value={edu.level} onChange={(e) => handleEducationChange(index, e)} />
+                </div>
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Institution Name</label>
+                  <input type="text" className="form-control" name="institutionName" value={edu.institutionName} onChange={(e) => handleEducationChange(index, e)} />
+                </div>
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Major</label>
+                  <input type="text" className="form-control" name="major" value={edu.major} onChange={(e) => handleEducationChange(index, e)} />
+                </div>
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Graduation Year</label>
+                  <input type="text" className="form-control" name="graduationYear" value={edu.graduationYear} onChange={(e) => handleEducationChange(index, e)} />
+                </div>
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">GPA</label>
+                  <input type="text" className="form-control" name="gpa" value={edu.gpa} onChange={(e) => handleEducationChange(index, e)} />
+                </div>
+                <div className="col-md-6">
+                  <button type="button" className="btn btn-danger" onClick={() => handleRemoveEducation(index)}>Remove</button>
+                </div>
+              </div>
             </div>
           ))}
-          <button type="button" onClick={handleAddEducation}>Add Education</button>
+          <button type="button" className="btn btn-primary" onClick={handleAddEducation}>Add Education</button>
         </div>
 
-        <div>
-          <h2>Education</h2>
-          {candidate.educationList.map((edu, index) => (
-            <div key={index}>
-              <label>Level</label>
-              <input type="text" name="level" value={edu.level} onChange={(e) => handleEducationChange(index, e)} />
-              <label>Institution Name</label>
-              <input type="text" name="institutionName" value={edu.institutionName} onChange={(e) => handleEducationChange(index, e)} />
-              <label>Major</label>
-              <input type="text" name="major" value={edu.major} onChange={(e) => handleEducationChange(index, e)} />
-              <label>Graduation Year</label>
-              <input type="text" name="graduationYear" value={edu.graduationYear} onChange={(e) => handleEducationChange(index, e)} />
-              <label>GPA</label>
-              <input type="text" name="gpa" value={edu.gpa} onChange={(e) => handleEducationChange(index, e)} />
-              <button type="button" onClick={() => handleRemoveEducation(index)}>Remove</button>
-            </div>
-          ))}
-          <button type="button" onClick={handleAddEducation}>Add Education</button>
-        </div>
-        <div>
+        {/* Training Fields */}
+        <div className="mb-4">
           <h2>Training</h2>
           {candidate.trainingList.map((training, index) => (
-            <div key={index}>
-              <label>Course Name</label>
-              <input type="text" name="courseName" value={training.courseName} onChange={(e) => handleTrainingChange(index, e)} />
-              <label>Certificate</label>
-              <input type="text" name="certificate" value={training.certificate} onChange={(e) => handleTrainingChange(index, e)} />
-              <label>Year</label>
-              <input type="text" name="year" value={training.year} onChange={(e) => handleTrainingChange(index, e)} />
-              <button type="button" onClick={() => handleRemoveTraining(index)}>Remove</button>
+            <div key={index} className="mb-3 p-3 border rounded">
+              <div className="row">
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Course Name</label>
+                  <input type="text" className="form-control" name="courseName" value={training.courseName} onChange={(e) => handleTrainingChange(index, e)} />
+                </div>
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Certificate</label>
+                  <input type="text" className="form-control" name="certificate" value={training.certificate} onChange={(e) => handleTrainingChange(index, e)} />
+                </div>
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Year</label>
+                  <input type="text" className="form-control" name="year" value={training.year} onChange={(e) => handleTrainingChange(index, e)} />
+                </div>
+                <div className="col-md-6">
+                  <button type="button" className="btn btn-danger" onClick={() => handleRemoveTraining(index)}>Remove</button>
+                </div>
+              </div>
             </div>
           ))}
-          <button type="button" onClick={handleAddTraining}>Add Training</button>
+          <button type="button" className="btn btn-primary" onClick={handleAddTraining}>Add Training</button>
         </div>
-        <div>
+
+        {/* Work Experience Fields */}
+        <div className="mb-4">
           <h2>Work Experience</h2>
           {candidate.workExperienceList.map((work, index) => (
-            <div key={index}>
-              <label>Company Name</label>
-              <input type="text" name="companyName" value={work.companyName} onChange={(e) => handleWorkExperienceChange(index, e)} />
-              <label>Last Position</label>
-              <input type="text" name="lastPosition" value={work.lastPosition} onChange={(e) => handleWorkExperienceChange(index, e)} />
-              <label>Last Salary</label>
-              <input type="text" name="lastSalary" value={work.lastSalary} onChange={(e) => handleWorkExperienceChange(index, e)} />
-              <label>Years Worked</label>
-              <input type="text" name="yearsWorked" value={work.yearsWorked} onChange={(e) => handleWorkExperienceChange(index, e)} />
-              <button type="button" onClick={() => handleRemoveWorkExperience(index)}>Remove</button>
+            <div key={index} className="mb-3 p-3 border rounded">
+              <div className="row">
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Company Name</label>
+                  <input type="text" className="form-control" name="companyName" value={work.companyName} onChange={(e) => handleWorkExperienceChange(index, e)} />
+                </div>
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Last Position</label>
+                  <input type="text" className="form-control" name="lastPosition" value={work.lastPosition} onChange={(e) => handleWorkExperienceChange(index, e)} />
+                </div>
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Last Salary</label>
+                  <input type="text" className="form-control" name="lastSalary" value={work.lastSalary} onChange={(e) => handleWorkExperienceChange(index, e)} />
+                </div>
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Years Worked</label>
+                  <input type="text" className="form-control" name="yearsWorked" value={work.yearsWorked} onChange={(e) => handleWorkExperienceChange(index, e)} />
+                </div>
+                <div className="col-md-6">
+                  <button type="button" className="btn btn-danger" onClick={() => handleRemoveWorkExperience(index)}>Remove</button>
+                </div>
+              </div>
             </div>
           ))}
-          <button type="button" onClick={handleAddWorkExperience}>Add Work Experience</button>
+          <button type="button" className="btn btn-primary" onClick={handleAddWorkExperience}>Add Work Experience</button>
         </div>
-        <button type="submit">Submit</button>
+
+        <button type="submit" className="btn btn-success">Submit</button>
       </form>
     </div>
+    </>
   );
 };
 

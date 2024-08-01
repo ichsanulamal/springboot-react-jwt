@@ -9,12 +9,13 @@ import Login from "./components/login.component";
 import Register from "./components/register.component";
 import Home from "./components/home.component";
 import Profile from "./components/profile.component";
-import BoardUser from "./components/board-user.component";
-import BoardModerator from "./components/board-moderator.component";
-import BoardAdmin from "./components/board-admin.component";
+
+import Candidate from "./components/candidate.component";
+import CandidateDetail from "./components/candidate-detail.component";
 
 // import AuthVerify from "./common/auth-verify";
 import EventBus from "./common/EventBus";
+import AddCandidate from "./components/candidate-add.component";
 
 class App extends Component {
   constructor(props) {
@@ -64,14 +65,9 @@ class App extends Component {
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <Link to={"/"} className="navbar-brand">
-            bezKoder
+            Home
           </Link>
           <div className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
-                Home
-              </Link>
-            </li>
 
             {showModeratorBoard && (
               <li className="nav-item">
@@ -90,11 +86,18 @@ class App extends Component {
             )}
 
             {currentUser && (
+              <>
               <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User
+                <Link to={"/candidates"} className="nav-link">
+                  Application List
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link to={"/candidates/add"} className="nav-link">
+                  Add Biodata
+                </Link>
+              </li>
+              </>
             )}
           </div>
 
@@ -131,13 +134,17 @@ class App extends Component {
         <div className="container mt-3">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/user" element={<BoardUser />} />
+            {/* <Route path="/user" element={<BoardUser />} />
             <Route path="/mod" element={<BoardModerator />} />
-            <Route path="/admin" element={<BoardAdmin />} />
+            <Route path="/admin" element={<BoardAdmin />} /> */}
+            
+            <Route path="/candidates" element={<Candidate />} />
+            <Route path="/candidates/:id" element={<CandidateDetail />} />
+            <Route path="/candidates/add" element={<AddCandidate />} />
+
           </Routes>
         </div>
 
