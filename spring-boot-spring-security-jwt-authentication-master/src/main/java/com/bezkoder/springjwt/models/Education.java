@@ -1,5 +1,6 @@
 package com.bezkoder.springjwt.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +18,7 @@ public class Education {
 
     @ManyToOne
     @JoinColumn(name = "candidate_id")
+    @JsonIgnore
     private Candidate candidate;
 
     public Long getId() {

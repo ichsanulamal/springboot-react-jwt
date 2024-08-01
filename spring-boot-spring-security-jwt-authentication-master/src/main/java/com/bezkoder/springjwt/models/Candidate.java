@@ -1,5 +1,6 @@
 package com.bezkoder.springjwt.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -26,6 +27,11 @@ public class Candidate {
     private String emergencyContact;
     private boolean willingToRelocate;
     private String expectedSalary;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Education> educationList;
@@ -194,5 +200,13 @@ public class Candidate {
 
     public void setWorkExperienceList(List<WorkExperience> workExperienceList) {
         this.workExperienceList = workExperienceList;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
