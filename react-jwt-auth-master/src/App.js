@@ -20,6 +20,7 @@ import CandidateDetail from "./components/candidate-detail.component";
 // import AuthVerify from "./common/auth-verify";
 import EventBus from "./common/EventBus";
 import AddCandidate from "./components/candidate-add.component";
+import UpdateCandidate from "./components/candidate-update.component";
 
 class App extends Component {
   constructor(props) {
@@ -136,6 +137,7 @@ class App extends Component {
             <Route path="/candidates" element={<Candidate />} />
             <Route path="/candidates/:id" element={<CandidateDetail />} />
             <Route path="/candidates/add" element={<AddCandidate />} />
+            <Route path="/candidates/:id/update" element={<UpdateCandidate />} />
 
           </Routes>
         </div>

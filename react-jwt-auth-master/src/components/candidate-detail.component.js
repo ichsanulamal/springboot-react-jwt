@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import CandidateService from "../services/candidate.service"; // Make sure this service method is implemented
 
 const CandidateDetail = () => {
@@ -31,6 +31,9 @@ const CandidateDetail = () => {
     <div className="container mt-5">
       <header className="jumbotron">
         <h1>Candidate Details</h1>
+        <li className="nav-item">
+        <Link to={`/candidates/${candidate.id}/update`}><p><strong>Update Biodata</strong></p></Link>
+        </li>
       </header>
       <div className="card">
         <div className="card-body">
