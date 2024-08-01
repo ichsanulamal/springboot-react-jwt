@@ -110,6 +110,36 @@ public class CandidateController {
     return ResponseEntity.ok(new MessageResponse("Candidate registered successfully!"));
   }
 
+  @PutMapping
+  @PreAuthorize("hasRole('USER')")
+  public ResponseEntity<MessageResponse> updateCandidate(@RequestBody Candidate candidate) {
+    Candidate oldCandidate = candidateRepository.findById(candidate.getId()).orElse(null);
+
+    if (oldCandidate == null || !oldCandidate.getUser().getId().equals(getCurrentUser().getId())) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    
+    candidate.setUser(getCurrentUser());
+    Candidate savedCandidate = candidateRepository.save(candidate);
+
+    for (Education e: savedCandidate.getEducationList()) {
+      e.setCandidate(savedCandidate);
+      educationRepository.save(e);
+    }
+
+    for (Training t: savedCandidate.getTrainingList()) {
+      t.setCandidate(savedCandidate);
+      trainingRepository.save(t);
+    }
+
+    for (WorkExperience w: savedCandidate.getWorkExperienceList()) {
+      w.setCandidate(savedCandidate);
+      workExperienceRepository.save(w);
+    }
+
+    return ResponseEntity.ok(new MessageResponse("Candidate updated successfully!"));
+  }
+
   // education
   @PostMapping("/{candidateId}/education")
   @PreAuthorize("hasRole('USER')")

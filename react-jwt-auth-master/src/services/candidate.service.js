@@ -15,6 +15,10 @@ class CandidateService {
   getCandidateById(id) {
     return axios.get(API_URL + `/${id}`, { headers: authHeader()  } );
   }
+
+  updateCandidate(candidate) {
+    return axios.put(API_URL + '', candidate, { headers: authHeader(  ) });
+  }
 }
 
 export default new CandidateService();
