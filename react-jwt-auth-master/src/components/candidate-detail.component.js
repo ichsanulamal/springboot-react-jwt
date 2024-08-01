@@ -29,12 +29,8 @@ const CandidateDetail = () => {
 
   return (
     <div className="container mt-5">
-      <header className="jumbotron">
-        <h1>Candidate Details</h1>
-        <li className="nav-item">
+        <h1 className="mb-4">Candidate Details</h1>
         <Link to={`/candidates/${candidate.id}/update`}><p><strong>Update Biodata</strong></p></Link>
-        </li>
-      </header>
       <div className="card">
         <div className="card-body">
           <dl className="row">

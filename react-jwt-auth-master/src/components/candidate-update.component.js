@@ -138,7 +138,7 @@ const UpdateCandidate = () => {
   return (
     <>
     <header className="jumbotron">
-        <h1>Add New Candidate</h1>  
+        <h1>Update Biodata</h1>  
       </header>
     <div className="container mt-5 card">
       <form onSubmit={handleSubmit}>

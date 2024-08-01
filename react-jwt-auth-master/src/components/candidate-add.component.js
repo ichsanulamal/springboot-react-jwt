@@ -124,9 +124,7 @@ const AddCandidate = () => {
 
   return (
     <>
-    <header className="jumbotron">
-        <h1>Add New Candidate</h1>  
-      </header>
+    <h1 className="mb-4">Add New Biodata</h1>
     <div className="container mt-5 card">
       <form onSubmit={handleSubmit}>
         {/* Personal Information Fields */}

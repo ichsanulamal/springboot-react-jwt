@@ -24,10 +24,10 @@ const Candidate = () => {
   }, []);
 
   return (
-    <div className="container">
-      <header className="jumbotron">
-        <h1>Job Applications</h1>
-      </header>
+    <>
+    <h1 className="mb-4">List</h1>
+    <div className="container mt-5 card">
+      
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
@@ -39,7 +39,6 @@ const Candidate = () => {
           ) : (
             candidates.map(candidate => (
               <li key={candidate.id}>
-                
                 <Link to={`/candidates/${candidate.id}`}><p><strong>{candidate.positionApplied} #{candidate.id}</strong></p></Link>
               </li>
             ))
@@ -47,6 +46,7 @@ const Candidate = () => {
         </ul>
       )}
     </div>
+    </>
   );
 };
 
