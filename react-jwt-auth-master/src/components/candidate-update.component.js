@@ -201,6 +201,10 @@ const UpdateCandidate = () => {
           <label className="form-label">Phone Number</label>
           <input type="text" className="form-control" name="phoneNumber" value={candidate.phoneNumber} onChange={handleInputChange} />
         </div>
+        <div className="mb-3">
+          <label className="form-label">Emergency Contact</label>
+          <input type="text" className="form-control" name="emergencyContact" value={candidate.emergencyContact} onChange={handleInputChange} />
+        </div>
         <div className="mb-3 form-check">
           <input type="checkbox" className="form-check-input" name="willingToRelocate" checked={candidate.willingToRelocate} onChange={handleCheckboxChange} />
           <label className="form-check-label">Willing to Relocate</label>
