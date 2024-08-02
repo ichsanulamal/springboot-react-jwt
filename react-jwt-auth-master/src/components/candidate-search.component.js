@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState, useEffect    } from 'react'; 
 import candidateService from '../services/candidate.service';
 
 
@@ -9,6 +9,27 @@ const SearchCandidates = () => {
   const [educationLevel, setEducationLevel] = useState('');
   const [candidates, setCandidates] = useState([]);
   const [error, setError] = useState('');
+
+  // Fetch candidates when the page loads
+  useEffect(() => {
+    const fetchCandidates = async () => {
+      try {
+        // Make the API request using the service
+        const results = await candidateService.searchCandidate(
+          { name, positionApplied, educationLevel }
+        );
+        // Update state with the results
+        console.log(results.data);
+        setCandidates(results.data);
+        setError('');
+      } catch (err) {
+        // Handle error
+        setError(err.message);
+      }
+    };
+
+    fetchCandidates();
+  }, []); // Empty dependency array means this effect runs only once after the initial render 
 
   // Handle form submission
   const handleSearch = async (event) => {
