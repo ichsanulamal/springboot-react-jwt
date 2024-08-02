@@ -114,17 +114,21 @@ const AddCandidate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(candidate);
       await CandidateService.addCandidate(candidate);
-      navigate("/"); // Redirect to the home page or candidate list
+      // Show success message
+      alert("Candidate added successfully!");
+      // Redirect to the specific candidate page
+      navigate(`/candidates`);
     } catch (error) {
-      console.error("Error adding candidate", error);
+      console.error("Error adding candi date", error);
+      // Optionally, show an error message
+      alert("Error adding candidate. Please try again.");
     }
   };
 
   return (
     <>
-    <h1 className="mb-4">Add New Biodata</h1>
+    <h1 className="mb-4">Applicant Profile Form</h1>
     <div className="container mt-5 card">
       <form onSubmit={handleSubmit}>
         {/* Personal Information Fields */}

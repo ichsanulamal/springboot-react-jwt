@@ -25,7 +25,7 @@ const Candidate = () => {
 
   return (
     <>
-    <h1 className="mb-4">List</h1>
+    <h1 className="mb-4">Applied Jobs</h1>
     <div className="container mt-5 card">
       
       {loading ? (

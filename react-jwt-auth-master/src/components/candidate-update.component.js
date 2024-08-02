@@ -129,16 +129,22 @@ const UpdateCandidate = () => {
     console.log(candidate);
     try {
       await CandidateService.updateCandidate(candidate); // Update the candidate
-      navigate("/"); // Redirect to the home page or candidate list
+      // Show success message
+      alert("Candidate updated successfully!");
+      // Redirect to the specific candidate page
+      navigate(`/candidates/${candidate.id}`);
     } catch (error) {
       console.error("Error updating candidate", error);
+      // Optionally, show an error message
+      alert("Error updating candidate. Please try again.");
     }
   };
+  
 
   return (
     <>
     <header className="jumbotron">
-        <h1>Update Biodata</h1>  
+        <h1>Update Applicant Profile Form</h1>  
       </header>
     <div className="container mt-5 card">
       <form onSubmit={handleSubmit}>

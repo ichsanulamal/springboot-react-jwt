@@ -55,7 +55,7 @@ const App = () => {
           {isAdmin && (
             <li className="nav-item">
               <Link to="/candidates/search" className="nav-link">
-                Search
+                Job Search
               </Link>
             </li>
           )}
@@ -63,12 +63,12 @@ const App = () => {
             <>
               <li className="nav-item">
                 <Link to="/candidates" className="nav-link">
-                  Application List
+                  Applied Jobs
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/candidates/add" className="nav-link">
-                  Add Biodata
+                  Apply
                 </Link>
               </li>
             </>

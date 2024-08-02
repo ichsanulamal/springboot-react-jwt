@@ -29,8 +29,8 @@ const CandidateDetail = () => {
 
   return (
     <div className="container mt-5">
-        <h1 className="mb-4">Candidate Details</h1>
-        <Link to={`/candidates/${candidate.id}/update`}><p><strong>Update Biodata</strong></p></Link>
+        <h1 className="mb-4">Applicant Details</h1>
+        <Link to={`/candidates/${candidate.id}/update`}><p><strong>Update Applicant Information</strong></p></Link>
       <div className="card">
         <div className="card-body">
           <dl className="row">
