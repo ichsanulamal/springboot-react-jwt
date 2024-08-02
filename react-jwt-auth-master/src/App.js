@@ -1,155 +1,126 @@
-import React, { Component } from "react";
-import { Routes, Route, Link } from "react-router-dom";
-// import "bootstrap/dist/css/bootstrap.min.css";
-
+import React, { useEffect, useState } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import './App.css';
 
-import "./App.css";
+import AuthService from './services/auth.service';
+import EventBus from './common/EventBus';
 
-import AuthService from "./services/auth.service";
+import Login from './components/login.component';
+import Register from './components/register.component';
+import Home from './components/home.component';
+import Profile from './components/profile.component';
+import Candidate from './components/candidate.component';
+import CandidateDetail from './components/candidate-detail.component';
+import AddCandidate from './components/candidate-add.component';
+import UpdateCandidate from './components/candidate-update.component';
+import SearchCandidates from './components/candidate-search.component';
 
-import Login from "./components/login.component";
-import Register from "./components/register.component";
-import Home from "./components/home.component";
-import Profile from "./components/profile.component";
+const App = () => {
+  const [currentUser, setCurrentUser] = useState(undefined);
+  const [isAdmin, setIsAdmin] = useState(false);
 
-import Candidate from "./components/candidate.component";
-import CandidateDetail from "./components/candidate-detail.component";
-
-// import AuthVerify from "./common/auth-verify";
-import EventBus from "./common/EventBus";
-import AddCandidate from "./components/candidate-add.component";
-import UpdateCandidate from "./components/candidate-update.component";
-import SearchCandidates from "./components/candidate-search.component";
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.logOut = this.logOut.bind(this);
-
-    this.state = {
-      isAdmin: false,
-      currentUser: undefined,
-    };
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     const user = AuthService.getCurrentUser();
-
     if (user) {
-      this.setState({
-        currentUser: user,
-        isAdmin: user.roles.includes("ROLE_ADMIN"),
-      });
+      setCurrentUser(user);
+      setIsAdmin(user.roles.includes('ROLE_ADMIN'));
     }
-    
-    EventBus.on("logout", () => {
-      this.logOut();
-    });
-  }
 
-  componentWillUnmount() {
-    EventBus.remove("logout");
-  }
+    const handleLogout = () => {
+      logOut();
+    };
 
-  logOut() {
+    EventBus.on('logout', handleLogout);
+
+    return () => {
+      EventBus.remove('logout');
+    };
+  }, []);
+
+  const logOut = () => {
     AuthService.logout();
-    this.setState({
-      isAdmin: false,
-      currentUser: undefined,
-    });
-  }
+    setCurrentUser(undefined);
+    setIsAdmin(false);
+  };
 
-  render() {
-    const {currentUser, isAdmin } = this.state;
-
-    return (
-      <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <Link to={"/"} className="navbar-brand">
-            Home
-          </Link>
-          <div className="navbar-nav mr-auto">
-            {isAdmin && (
-              <>
+  return (
+    <div>
+      <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <Link to="/" className="navbar-brand">
+          Home
+        </Link>
+        <div className="navbar-nav mr-auto">
+          {isAdmin && (
+            <li className="nav-item">
+              <Link to="/candidates/search" className="nav-link">
+                Search
+              </Link>
+            </li>
+          )}
+          {currentUser && !isAdmin && (
+            <>
               <li className="nav-item">
-                <Link to={"/candidates/search"} className="nav-link">
-                  Search
-                </Link>
-              </li>
-              </>
-            )}
-
-            {currentUser && !isAdmin && (
-              <>
-              <li className="nav-item">
-                <Link to={"/candidates"} className="nav-link">
+                <Link to="/candidates" className="nav-link">
                   Application List
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/candidates/add"} className="nav-link">
+                <Link to="/candidates/add" className="nav-link">
                   Add Biodata
                 </Link>
               </li>
-              </>
-            )}
-          </div>
+            </>
+          )}
+        </div>
 
+        <div className="navbar-nav ml-auto">
           {currentUser ? (
-            <div className="navbar-nav ml-auto">
+            <>
               <li className="nav-item">
-                <Link to={"/profile"} className="nav-link">
+                <Link to="/profile" className="nav-link">
                   {currentUser.username}
                 </Link>
               </li>
               <li className="nav-item">
-                <a href="/login" className="nav-link" onClick={this.logOut}>
+                <a href="/login" className="nav-link" onClick={logOut}>
                   LogOut
                 </a>
               </li>
-            </div>
+            </>
           ) : (
-            <div className="navbar-nav ml-auto">
+            <>
               <li className="nav-item">
-                <Link to={"/login"} className="nav-link">
+                <Link to="/login" className="nav-link">
                   Login
                 </Link>
               </li>
-
               <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
+                <Link to="/register" className="nav-link">
                   Sign Up
                 </Link>
               </li>
-            </div>
+            </>
           )}
-        </nav>
-
-        <div className="container mt-3">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/profile" element={<Profile />} />
-            {/* <Route path="/user" element={<BoardUser />} />
-            <Route path="/mod" element={<BoardModerator />} />
-            <Route path="/admin" element={<BoardAdmin />} /> */}
-            
-            <Route path="/candidates" element={<Candidate />} />
-            <Route path="/candidates/:id" element={<CandidateDetail />} />
-            <Route path="/candidates/add" element={<AddCandidate />} />
-            <Route path="/candidates/:id/update" element={<UpdateCandidate />} />
-            <Route path="/candidates/search" element={<SearchCandidates />} />
-
-          </Routes>
         </div>
+      </nav>
 
-        {/* <AuthVerify logOut={this.logOut}/> */}
+      <div className="container mt-3">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/candidates" element={<Candidate />} />
+          <Route path="/candidates/:id" element={<CandidateDetail />} />
+          <Route path="/candidates/add" element={<AddCandidate />} />
+          <Route path="/candidates/:id/update" element={<UpdateCandidate />} />
+          <Route path="/candidates/search" element={<SearchCandidates />} />
+        </Routes>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default App;
