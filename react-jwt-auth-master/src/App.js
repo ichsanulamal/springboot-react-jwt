@@ -72,15 +72,16 @@ class App extends Component {
           </Link>
           <div className="navbar-nav mr-auto">
             {isAdmin && (
-              // <li className="nav-item">
-              //   <Link to={"/admin"} className="nav-link">
-              //     Admin Board
-              //   </Link>
-              // </li>
-              <></>
+              <>
+              <li className="nav-item">
+                <Link to={"/candidates/search"} className="nav-link">
+                  Search
+                </Link>
+              </li>
+              </>
             )}
 
-            {currentUser && (
+            {currentUser && !isAdmin && (
               <>
               <li className="nav-item">
                 <Link to={"/candidates"} className="nav-link">
@@ -90,11 +91,6 @@ class App extends Component {
               <li className="nav-item">
                 <Link to={"/candidates/add"} className="nav-link">
                   Add Biodata
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/candidates/search"} className="nav-link">
-                  Search
                 </Link>
               </li>
               </>
