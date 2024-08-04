@@ -1,3 +1,5 @@
+**Author: Muhammad Ichsanul Amal**
+
 ### Library Application Analysis
 
 #### 1. Business Process Description
@@ -22,9 +24,9 @@ The library application facilitates several core functions: member registration,
 
 Here's the data flow diagram.
 
-![alt text](<DFD L1.drawio.png>)
+![DFD](<DFD L1.drawio.png>)
 
-#### Business Flow:
+##### Business Flow:
 
 1. **Member Registration:**
    - The member provides personal details.
@@ -54,7 +56,7 @@ Here's the data flow diagram.
 
 #### 2. Data Structure Description
 
-![alt text](image.png)
+![ERD](image.png)
 
 **Entities and Attributes:**
 
@@ -106,125 +108,43 @@ Here's a basic mockup of the library application, divided into the main user int
    - Navigation Menu: Home, Browse Books, My Account, Logout
    - Welcome message and search bar to find books
 
-   ```plaintext
-   +-------------------------+
-   | Library Application    |
-   +-------------------------+
-   | Home    | Browse Books | My Account | Logout |
-   +-------------------------+
-   | Search for books: [__________] [Search Button] |
-   +-------------------------+
-   | Featured Books:                              |
-   | - Book Title 1 by Author                    |
-   | - Book Title 2 by Author                    |
-   +-------------------------+
-   ```
-
 2. **Member Registration Page**
    - Form to input personal details
-
-   ```plaintext
-   +-------------------------+
-   | Register as a Member    |
-   +-------------------------+
-   | Name: [__________]      |
-   | Email: [__________]     |
-   | Password: [__________]  |
-   | Phone: [__________]     |
-   | Date of Birth: [__/__/____] |
-   | [Register Button]       |
-   +-------------------------+
-   ```
+   
+   ![Registration](1.drawio.png){ width=50% }
 
 3. **Member Login Page**
    - Form to enter login credentials
 
-   ```plaintext
-   +-------------------------+
-   | Member Login            |
-   +-------------------------+
-   | Email: [__________]     |
-   | Password: [__________]  |
-   | [Login Button]          |
-   +-------------------------+
-   ```
-
 4. **Browse Books Page**
    - List of books with options to borrow
-
-   ```plaintext
-   +-------------------------+
-   | Browse Books            |
-   +-------------------------+
-   | Book Title 1 by Author [Borrow Button] |
-   | Book Title 2 by Author [Borrow Button] |
-   +-------------------------+
-   ```
+   
+   ![Browse Books](2.drawio.png){ width=50% }
 
 5. **My Account Page**
    - Displays borrowed books and personal info
-
-   ```plaintext
-   +-------------------------+
-   | My Account              |
-   +-------------------------+
-   | Personal Info:          |
-   | - Name: [Name]          |
-   | - Email: [Email]        |
-   | - Phone: [Phone]        |
-   +-------------------------+
-   | Borrowed Books:         |
-   | - Book Title 1 (Due: __/__/____) |
-   | - Book Title 2 (Due: __/__/____) |
-   +-------------------------+
-   ```
+   
+   ![Borrowed Books](3.drawio.png){ width=50% }
 
 **B. Librarian Interface**
 
 1. **Home Page**
    - Navigation Menu: Home, Manage Books, View Records, Logout
 
-   ```plaintext
-   +-------------------------+
-   | Library Application    |
-   +-------------------------+
-   | Home    | Manage Books | View Records | Logout |
-   +-------------------------+
-   ```
-
 2. **Manage Books Page**
    - Form to add or update books
 
-   ```plaintext
-   +-------------------------+
-   | Manage Books            |
-   +-------------------------+
-   | Title: [__________]     |
-   | Author: [__________]    |
-   | Publisher: [__________] |
-   | Publication Date: [__/__/____] |
-   | Genre: [__________]     |
-   | Copies Available: [___] |
-   | [Add/Update Button]     |
-   +-------------------------+
-   ```
+![Manage Books](4.drawio.png){ width=50% }
 
 3. **View Records Page**
    - List of borrowing records
 
-   ```plaintext
-   +-------------------------+
-   | View Borrowing Records  |
-   +-------------------------+
-   | Record ID | Member ID | Book ID | Borrow Date | Return Date |
-   | 1         | M001     | B001    | __/__/____   | __/__/____   |
-   | 2         | M002     | B002    | __/__/____   | __/__/____   |
-   +-------------------------+
-   ```
+![Books Records](5.drawio.png){ width=50% }
 
 #### 4. Process Explanations
 
 **A. Member Registration Process**
+
    - **Description**: Allows a new user to create an account with the library system.
    - **Steps**:
      1. Member navigates to the registration page.
@@ -233,6 +153,7 @@ Here's a basic mockup of the library application, divided into the main user int
      4. A confirmation message is displayed, and the member is redirected to the login page.
 
 **B. Member Login Process**
+
    - **Description**: Authenticates a member’s credentials to access their account.
    - **Steps**:
      1. Member navigates to the login page.
@@ -241,6 +162,7 @@ Here's a basic mockup of the library application, divided into the main user int
      4. Upon successful authentication, the member is redirected to the home page or their account page.
 
 **C. Book Registration Process (Librarian)**
+
    - **Description**: Allows a librarian to add or update book information.
    - **Steps**:
      1. Librarian navigates to the manage books page.
@@ -249,6 +171,7 @@ Here's a basic mockup of the library application, divided into the main user int
      4. A confirmation message is displayed.
 
 **D. Book Borrowing Process**
+
    - **Description**: Allows a member to borrow a book from the library.
    - **Steps**:
      1. Member searches for and selects a book from the browse books page.
@@ -257,6 +180,7 @@ Here's a basic mockup of the library application, divided into the main user int
      4. The book’s availability status is updated, and a confirmation is provided.
 
 **E. Book Return Process**
+
    - **Description**: Allows a member to return a borrowed book.
    - **Steps**:
      1. Member navigates to the book return section.
