@@ -1,4 +1,4 @@
-package com.bezkoder.springjwt.models;
+package com.example.hr.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

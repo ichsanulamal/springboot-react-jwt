@@ -1,7 +1,7 @@
-package com.bezkoder.springjwt.repository;
+package com.example.hr.repository;
 
-import com.bezkoder.springjwt.models.Candidate;
-import com.bezkoder.springjwt.models.User;
+import com.example.hr.models.Candidate;
+import com.example.hr.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

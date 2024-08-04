@@ -1,6 +1,6 @@
-package com.bezkoder.springjwt.repository;
+package com.example.hr.repository;
 
-import com.bezkoder.springjwt.models.Training;
+import com.example.hr.models.Training;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

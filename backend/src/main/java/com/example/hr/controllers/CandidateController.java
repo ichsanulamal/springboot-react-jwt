@@ -1,8 +1,10 @@
-package com.bezkoder.springjwt.controllers;
+package com.example.hr.controllers;
 
-import com.bezkoder.springjwt.models.*;
-import com.bezkoder.springjwt.payload.response.MessageResponse;
-import com.bezkoder.springjwt.repository.*;
+import com.example.hr.models.*;
+import com.example.hr.models.*;
+import com.example.hr.payload.response.MessageResponse;
+import com.example.hr.repository.*;
+import com.example.hr.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
