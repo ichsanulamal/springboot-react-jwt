@@ -1,0 +1,737 @@
+{
+	"info": {
+		"_postman_id": "92bbce8b-8afc-427e-b8cb-292b148d7a51",
+		"name": "employee",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16408862"
+	},
+	"item": [
+		{
+			"name": "user 1",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "signup",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"cakar@mail.com\", \n    \"email\": \"cakar@mail.com\",\n    \"password\": \"cakar@mail.com\",\n    \"role\": [\"\"]\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/auth/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "signin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse the JSON response",
+											"var jsonResponse = pm.response.json();",
+											"",
+											"",
+											"// console.log();",
+											"",
+											"// Set the token as an environment variable",
+											"pm.environment.set(\"jwtToken\", jsonResponse.tokenType + \" \" + jsonResponse.accessToken);",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"cakar@mail.com\", \n    \"password\": \"cakar@mail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/auth/signin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"auth",
+										"signin"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "candidate",
+					"item": [
+						{
+							"name": "add job app",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwtToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"positionApplied\": \"Software Engineer\",\n  \"name\": \"John Doe\",\n  \"ktpNumber\": \"123456789\",\n  \"birthPlace\": \"Jakarta\",\n  \"birthDate\": \"1990-01-01\",\n  \"gender\": \"Male\",\n  \"religion\": \"Christianity\",\n  \"bloodType\": \"O\",\n  \"maritalStatus\": \"Single\",\n  \"ktpAddress\": \"Jl. Merdeka No.1\",\n  \"currentAddress\": \"Jl. Kebangsaan No.2\",\n  \"email\": \"john.doe@example.com\",\n  \"phoneNumber\": \"08123456789\",\n  \"emergencyContact\": \"Jane Doe\",\n  \"willingToRelocate\": true,\n  \"expectedSalary\": \"Rp10000000\",\n  \"educationList\": [\n    {\n      \"level\": \"Bachelor's\",\n      \"institutionName\": \"Usniversitas Indonesia\",\n      \"major\": \"Computer Science\",\n      \"graduationYear\": \"2020\",\n      \"gpa\": \"3.8\"\n    }\n  ],\n  \"trainingList\": [\n    {\n      \"courseName\": \"Java Programming\",\n      \"certificate\": true,\n      \"year\": \"2021\"\n    }\n  ],\n  \"workExperienceList\": [\n    {\n      \"companyName\": \"Tech Company\",\n      \"lastPosition\": \"Software Developer\",\n      \"lastSalary\": \"Rp15000000\",\n      \"yearsWorked\": \"2\"\n    }\n  ]\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/candidates",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidates"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get job apps",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwtToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/candidates",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidates"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get job app by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwtToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/candidates/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidates",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "education",
+					"item": [
+						{
+							"name": "update job app education",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwtToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 4,\n    \"level\": \"Bachelor's\",\n    \"institutionName\": \"Universitas Indonesia\",\n    \"major\": \"Computer Science\",\n    \"graduationYear\": \"2020\",\n    \"gpa\": \"3.8\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/candidates/1/education",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidates",
+										"1",
+										"education"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create job app education",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwtToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"level\": \"Bachelor's\",\n    \"institutionName\": \"ITB\",\n    \"major\": \"Computer Science\",\n    \"graduationYear\": \"2020\",\n    \"gpa\": \"3.8\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/candidates/1/education",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidates",
+										"1",
+										"education"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete job app education",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwtToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/candidates/1/education/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidates",
+										"1",
+										"education",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "training",
+					"item": [
+						{
+							"name": "update job app training",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwtToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 5,\n  \"courseName\": \"Advanced Java Programming\",\n  \"certificate\": true,\n  \"year\": 1000\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/candidates/1/training",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidates",
+										"1",
+										"training"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create job app training",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwtToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n//   \"id\": 1,\n  \"courseName\": \"Advanced Java 2 Programming\",\n  \"certificate\": true,\n  \"year\": 2017\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/candidates/1/training",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidates",
+										"1",
+										"training"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete job app training",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwtToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/candidates/1/training/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidates",
+										"1",
+										"training",
+										"4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "work expience",
+					"item": [
+						{
+							"name": "update job we",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwtToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 4,\n  \"companyName\": \"Google\",\n  \"lastPosition\": \"cheerleader\",\n  \"lastSalary\": \"15000000\",\n  \"yearsWorked\": 1\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/candidates/1/workExperience",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidates",
+										"1",
+										"workExperience"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create job app we",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwtToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n//   \"id\": 1,\n  \"companyName\": \"TechCorp\",\n  \"lastPosition\": \"Senior Software Engineer\",\n  \"lastSalary\": \"15000000\",\n  \"yearsWorked\": 6\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/candidates/1/workExperience",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidates",
+										"1",
+										"workExperience"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete job app we",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{jwtToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/candidates/1/workExperience/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidates",
+										"1",
+										"workExperience",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin@mail.com\", \n    \"email\": \"admin@mail.com\",\n    \"password\": \"admin@mail.com\",\n    \"role\": [\"admin\"]\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse the JSON response",
+									"var jsonResponse = pm.response.json();",
+									"",
+									"",
+									"// console.log();",
+									"",
+									"// Set the token as an environment variable",
+									"pm.environment.set(\"jwtToken\", jsonResponse.tokenType + \" \" + jsonResponse.accessToken);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin@mail.com\", \n    \"password\": \"admin@mail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add job app",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{jwtToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"positionApplied\": \"Software Engineer3\",\n  \"name\": \"John Doe\",\n  \"ktpNumber\": \"123456789\",\n  \"birthPlace\": \"Jakarta\",\n  \"birthDate\": \"1990-01-01\",\n  \"gender\": \"Male\",\n  \"religion\": \"Christianity\",\n  \"bloodType\": \"O\",\n  \"maritalStatus\": \"Single\",\n  \"ktpAddress\": \"Jl. Merdeka No.1\",\n  \"currentAddress\": \"Jl. Kebangsaan No.2\",\n  \"email\": \"john.doe@example.com\",\n  \"phoneNumber\": \"08123456789\",\n  \"emergencyContact\": \"Jane Doe\",\n  \"willingToRelocate\": true,\n  \"expectedSalary\": \"Rp10000000\",\n  \"educationList\": [\n    {\n      \"level\": \"Bachelor's\",\n      \"institutionName\": \"Usniversitas Indonesia\",\n      \"major\": \"Computer Science\",\n      \"graduationYear\": \"2020\",\n      \"gpa\": \"3.8\"\n    }\n  ],\n  \"trainingList\": [\n    {\n      \"courseName\": \"Java Programming\",\n      \"certificate\": true,\n      \"year\": \"2021\"\n    }\n  ],\n  \"workExperienceList\": [\n    {\n      \"companyName\": \"Tech Company\",\n      \"lastPosition\": \"Software Developer\",\n      \"lastSalary\": \"Rp15000000\",\n      \"yearsWorked\": \"2\"\n    }\n  ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/candidates",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"candidates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get job apps",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{jwtToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/candidates",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"candidates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{jwtToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/candidates/search?name&positionApplied=&educationLevel=ach",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"candidates",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": null
+								},
+								{
+									"key": "positionApplied",
+									"value": ""
+								},
+								{
+									"key": "educationLevel",
+									"value": "ach"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get job app by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{jwtToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/candidates/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"candidates",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
