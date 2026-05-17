@@ -1,0 +1,10 @@
+# Ignore generated/minified files
+dist/* linguist-generated=true
+build/* linguist-generated=true
+
+# Ignore vendored code
+vendor/* linguist-vendored=true
+
+# Exclude specific files from language stats
+*.html linguist-detectable=false
+*.js linguist-detectable=false

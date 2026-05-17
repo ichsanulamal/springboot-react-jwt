@@ -1,7 +1,7 @@
 {
-  "name": "react-jwt-auth",
+  "name": "talenthub-frontend",
   "version": "1.0.0",
-  "private": true,
+  "description": "Frontend for TalentHub - React Applicant Tracking System (ATS) and Candidate Portal",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@testing-library/jest-dom": "^5.16.4",
